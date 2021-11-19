@@ -14,11 +14,12 @@ check_klipper()
 
 }
 
-# Step 2: link macros
-link_macros()
+# Step 2: link macros and configs
+create_links()
 {
-    echo "Linking extension to Klipper..."
+    echo "Linking macro and config to klipper_config..."
     ln -s "${SRCDIR}/macros" "${KLIPPER_CONFIG_PATH}/macros/common"
+    ln -s "${SRCDIR}/configs" "${KLIPPER_CONFIG_PATH}/configs/common"
 }
 
 # Step 4: restarting Klipper
@@ -52,5 +53,5 @@ done
 
 # Run steps
 verify_ready
-link_macros
+create_links
 restart_klipper
