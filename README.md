@@ -1,20 +1,19 @@
 # Voron-Klipper-Macros
 
-Usage:
+## Usage
 
-Install:
-SSH into your pi:
+## Install
 
 ```
+> ssh <yourpiaddress>
 > git clone https://github.com/The-Conglomerate/Voron-Klipper-Common.git
 > cd ~/Voron-Klipper-Common
 > ./install.sh
 ```
 
-Modify your printer.cfg to load config, the common macros, then your custom macros. This will allow you to override common with yours if you choose.
+> Modify your `printer.cfg` to load config, the common macros, then your custom macros. This will allow you to override common with yours if you choose.
 
-`printer.cfg`
-```
+``` 
 ...
 
 [include configs/*.cfg]
@@ -24,7 +23,8 @@ Modify your printer.cfg to load config, the common macros, then your custom macr
 ...
 ```
 
-`moonraker.cfg`
+> Modify your `moonraker.cfg` to be notified of updates and install them.
+
 ```
 [update_manager voron-klipper-common]
 type: git_repo
