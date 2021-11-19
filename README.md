@@ -23,6 +23,8 @@
 ...
 ```
 
+
+## Moonraker Updater
 > Modify your `moonraker.cfg` to be notified of updates and install them.
 
 ```

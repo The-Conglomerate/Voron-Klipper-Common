@@ -14,7 +14,14 @@ check_klipper()
 
 }
 
-# Step 2: link macros and configs
+# Step 2: Create macros and configs directories
+create_dirs()
+{
+    echo "Creating macro and config directories in klipper_config..."
+    mkdir -p "${SRCDIR}/macros" "${SRCDIR}/configs"
+}
+
+# Step 3: link macros and configs
 create_links()
 {
     echo "Linking macro and config to klipper_config..."
@@ -53,5 +60,6 @@ done
 
 # Run steps
 verify_ready
+create_dirs
 create_links
 restart_klipper
