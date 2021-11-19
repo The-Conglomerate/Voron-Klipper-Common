@@ -4,9 +4,12 @@ Usage:
 
 Install:
 SSH into your pi:
-> git clone https://github.com/The-Conglomerate/Voron-Klipper-Macros.git
-> cd ~/klipper_config/macros
-> ln -s ~/Voron-Klipper-Macros common
+
+```
+> git clone https://github.com/The-Conglomerate/Voron-Klipper-Common.git
+> cd ~/Voron-Klipper-Common
+> ./install.sh
+```
 
 Modify your printer.cfg to load config, the common macros, then your custom macros. This will allow you to override common with yours if you choose.
 
@@ -26,5 +29,6 @@ Modify your printer.cfg to load config, the common macros, then your custom macr
 [update_manager voron-klipper-common]
 type: git_repo
 path: ~/Voron-Klipper-Common
-origin: git@github.com:The-Conglomerate/Voron-Klipper-Common.git
+origin: https://github.com/The-Conglomerate/Voron-Klipper-Common.git
+install_script: install.sh
 ```
