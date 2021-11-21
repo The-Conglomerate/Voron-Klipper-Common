@@ -18,15 +18,22 @@ check_klipper()
 create_dirs()
 {
     echo "Creating macro and config directories in klipper_config..."
-    mkdir -p "${SRCDIR}/macros" "${SRCDIR}/configs"
+    mkdir -p "${SRCDIR}/macros" "${SRCDIR}/configs" "${SRCDIR}/scripts"
 }
 
 # Step 3: link macros and configs
 create_links()
 {
     echo "Linking macro and config to klipper_config..."
-    ln -s "${SRCDIR}/macros" "${KLIPPER_CONFIG_PATH}/macros/common"
-    ln -s "${SRCDIR}/configs" "${KLIPPER_CONFIG_PATH}/configs/common"
+    if [ ! -f "${KLIPPER_CONFIG_PATH}/macros/common" ]; then
+        ln -s "${SRCDIR}/macros" "${KLIPPER_CONFIG_PATH}/macros/common"
+    fi
+    if [ ! -f "${KLIPPER_CONFIG_PATH}/configs/common" ]; then
+        ln -s "${SRCDIR}/configs" "${KLIPPER_CONFIG_PATH}/configs/common"
+    fi
+    if [ ! -f "${KLIPPER_CONFIG_PATH}/scripts/common" ]; then
+        ln -s "${SRCDIR}/scripts" "${KLIPPER_CONFIG_PATH}/scripts/common"
+    fi
 }
 
 # Step 4: restarting Klipper
