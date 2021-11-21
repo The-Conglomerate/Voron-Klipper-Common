@@ -1,6 +1,7 @@
 # Voron-Klipper-Macros
 
-## Usage
+Common klipper configs, macros, and scripts for Voron printers. 
+
 
 ## Install
 
@@ -11,26 +12,31 @@
 > ./install.sh
 ```
 
-> Modify your `printer.cfg` to load config, the common macros, then your custom macros. This will allow you to override common with yours if you choose.
+> Modify your `printer.cfg` to load config, the common macros, then your custom macros. This will allow you to override any config or macro if you choose.
 
 ``` 
 ...
 
+[include configs/common/*.cfg] # Load common configs first
 [include configs/*.cfg]
-[include macros/common/*.cfg] # Load https://github.com/The-Conglomerate/Voron-Klipper-Macros first
+[include macros/common/*.cfg] # Load common macros first
 [include macros/*.cfg]
 
 ...
 ```
 
-
 ## Moonraker Updater
-> Modify your `moonraker.cfg` to be notified of updates and install them.
+> Modify your `moonraker.cfg` to be notified of updates and install them via view you Web UI.
 
 ```
 [update_manager voron-klipper-common]
 type: git_repo
-path: ~/Voron-Klipper-Common
+path: /home/pi/Voron-Klipper-Common
+primary_branch: main
 origin: https://github.com/The-Conglomerate/Voron-Klipper-Common.git
-install_script: install.sh
+install_script: /home/pi/Voron-Klipper-Common/install.sh
 ```
+
+## Usage
+
+Coming soon
