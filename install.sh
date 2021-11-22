@@ -39,7 +39,7 @@ create_links()
     echo "Linking common directories to klipper_config..."
     if [ ! -L "${KLIPPER_CONFIG_PATH}/macros/common" ]; then
         echo "Creating macros/common link..."
-        ln -s "${SRCDIR}/macros/common" "${KLIPPER_CONFIG_PATH}/macros/common"
+        ln -s "${SRCDIR}/macros" "${KLIPPER_CONFIG_PATH}/macros/common"
     fi
     if [ ! -L "${KLIPPER_CONFIG_PATH}/configs/common" ]; then
         echo "Creating configs/common link..."
