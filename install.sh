@@ -1,4 +1,5 @@
 #!/bin/bash
+SRCDIR="${HOME}/Voron-Klipper-Common"
 KLIPPER_CONFIG_PATH="${HOME}/klipper_config"
 SYSTEMDDIR="/etc/systemd/system"
 
@@ -17,21 +18,35 @@ check_klipper()
 # Step 2: Create macros and configs directories
 create_dirs()
 {
-    echo "Creating macro and config directories in klipper_config..."
-    mkdir -p "${SRCDIR}/macros" "${SRCDIR}/configs" "${SRCDIR}/scripts"
+    echo "Creating directories in klipper_config..."
+    if [ ! -d "${KLIPPER_CONFIG_PATH}/macros" ]; then
+        echo "Creating macros directory..."
+        mkdir -p "${KLIPPER_CONFIG_PATH}/macros" 
+    fi
+    if [ ! -d "${KLIPPER_CONFIG_PATH}/configs" ]; then
+        echo "Creating configs directory..."
+        mkdir -p "${KLIPPER_CONFIG_PATH}/configs"
+    fi
+    if [ ! -d "${KLIPPER_CONFIG_PATH}/scripts" ]; then
+        echo "Creating scripts directory..."
+        mkdir -p "${KLIPPER_CONFIG_PATH}/scripts"
+    fi
 }
 
 # Step 3: link macros and configs
 create_links()
 {
-    echo "Linking macro and config to klipper_config..."
-    if [ ! -f "${KLIPPER_CONFIG_PATH}/macros/common" ]; then
-        ln -s "${SRCDIR}/macros" "${KLIPPER_CONFIG_PATH}/macros/common"
+    echo "Linking common directories to klipper_config..."
+    if [ ! -L "${KLIPPER_CONFIG_PATH}/macros/common" ]; then
+        echo "Creating macros/common link..."
+        ln -s "${SRCDIR}/macros/common" "${KLIPPER_CONFIG_PATH}/macros/common"
     fi
-    if [ ! -f "${KLIPPER_CONFIG_PATH}/configs/common" ]; then
+    if [ ! -L "${KLIPPER_CONFIG_PATH}/configs/common" ]; then
+        echo "Creating configs/common link..."
         ln -s "${SRCDIR}/configs" "${KLIPPER_CONFIG_PATH}/configs/common"
     fi
-    if [ ! -f "${KLIPPER_CONFIG_PATH}/scripts/common" ]; then
+    if [ ! -L "${KLIPPER_CONFIG_PATH}/scripts/common" ]; then
+        echo "Creating scripts/common link..."
         ln -s "${SRCDIR}/scripts" "${KLIPPER_CONFIG_PATH}/scripts/common"
     fi
 }
