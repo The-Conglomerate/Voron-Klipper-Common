@@ -1,6 +1,6 @@
 # Voron-Klipper-Macros
 
-Common klipper configs, macros, and scripts for Voron printers. 
+Common klipper configs, macros, and scripts for Voron printers.
 
 # Table of Contents
 **(!)** = has important warning
@@ -13,7 +13,7 @@ Common klipper configs, macros, and scripts for Voron printers.
 
 # Change Log
 
-Changes will be noted here by date, title if needed, files changed, summary of changes. 
+Changes will be noted here by date, title if needed, files changed, summary of changes.
 
 _**Note: only changes of signifigance will be added.**_
 
@@ -31,7 +31,7 @@ _**Note: only changes of signifigance will be added.**_
 
 > Modify your `printer.cfg` to load config, the common macros, then your custom macros. This will allow you to override any config or macro if you choose.
 
-``` 
+```
 ...
 
 [include configs/common/*.cfg] # Load common configs first
@@ -52,6 +52,7 @@ path: /home/pi/Voron-Klipper-Common
 primary_branch: main
 origin: https://github.com/The-Conglomerate/Voron-Klipper-Common.git
 install_script: /home/pi/Voron-Klipper-Common/install.sh
+is_system_service: False
 ```
 
 ## Usage
