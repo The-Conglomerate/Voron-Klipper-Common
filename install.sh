@@ -21,7 +21,7 @@ create_dirs()
     echo "Creating directories in klipper_config..."
     if [ ! -d "${KLIPPER_CONFIG_PATH}/macros" ]; then
         echo "Creating macros directory..."
-        mkdir -p "${KLIPPER_CONFIG_PATH}/macros" 
+        mkdir -p "${KLIPPER_CONFIG_PATH}/macros"
     fi
     if [ ! -d "${KLIPPER_CONFIG_PATH}/configs" ]; then
         echo "Creating configs directory..."
@@ -51,7 +51,17 @@ create_links()
     fi
 }
 
-# Step 4: restarting Klipper
+# Step 4: create printer_variables.cfg
+create_printer_variables_cfg()
+{
+    echo "Linking common directories to klipper_config..."
+    if [ ! -f "${KLIPPER_CONFIG_PATH}/printer_variables.cfg" ]; then
+        echo "Creating ${KLIPPER_CONFIG_PATH}/printer_variables.cfg"
+        cp "${SRCDIR}/printer_variables.cfg.dist" "${KLIPPER_CONFIG_PATH}/printer_variables.cfg"
+    fi
+}
+
+# Step 5: restarting Klipper
 restart_klipper()
 {
     echo "Restarting Klipper..."
@@ -84,4 +94,5 @@ done
 verify_ready
 create_dirs
 create_links
+create_printer_variables_cfg
 restart_klipper
