@@ -1,9 +1,13 @@
+#############################
+#     Printer Variables     #
+#############################
 [gcode_macro _PRINTER_VARIABLE]
-rename_existing: _BASE_PRINTER_VARIABLE
 description: Helper: Contains defined printer specific variables
 ##### Display info #####
-variable_printer_name: ''
-variable_display_lcd_type: 'none' ; none/uc1701/sh1106 what type of display do we have
+variable_printer_name: 'Vx.XXXX'            # printer name shown on the display
+variable_display_group: '__voron_display'   # main display group to be shown after a splash screen
+variable_display_icon: 'voron'              # used to show a icon if available on the display
+variable_display_lcd_type: 'none'           # [none|uc1701|sh1106] what type of display do we have
 gcode:
     # features
     {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
@@ -11,3 +15,14 @@ gcode:
     {% if ena_debug == "true" %}
         {action_respond_info('==== _PRINTER_VARIABLE ====')}
     {% endif %}
+
+[delayed_gcode INIT_PRINTER_VARIABLE]
+initial_duration: 0.3
+gcode:
+    # features
+    {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
+
+    {% if ena_debug == "true" %}
+        {action_respond_info('==== INIT_PRINTER_VARIABLE ====')}
+    {% endif %}
+    _PRINTER_VARIABLE
