@@ -40,6 +40,7 @@ _**Note: only changes of signifigance will be added.**_
 [include configs/*.cfg]
 [include macros/common/*.cfg] # Load common macros first
 [include macros/*.cfg]
+[include printer_variable.cfg]
 
 ...
 ```
