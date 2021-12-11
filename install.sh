@@ -54,10 +54,9 @@ create_links()
 # Step 4: create printer_variables.cfg
 create_printer_variables_cfg()
 {
-    echo "Linking common directories to klipper_config..."
-    if [ ! -f "${KLIPPER_CONFIG_PATH}/printer_variables.cfg" ]; then
-        echo "Creating ${KLIPPER_CONFIG_PATH}/printer_variables.cfg"
-        cp "${SRCDIR}/printer_variables.cfg.dist" "${KLIPPER_CONFIG_PATH}/printer_variables.cfg"
+    if [ ! -f "${KLIPPER_CONFIG_PATH}/printer_variable.cfg" ]; then
+        echo "Creating ${KLIPPER_CONFIG_PATH}/printer_variable.cfg"
+        cp "${SRCDIR}/printer_variable.cfg.dist" "${KLIPPER_CONFIG_PATH}/printer_variable.cfg"
     fi
 }
 
