@@ -1,5 +1,7 @@
 # Voron-Klipper-Macros
 
+![The Conglomerate](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Society.svg/400px-Society.svg.png)
+
 Common klipper configs, macros, and scripts for Voron printers.
 
 # Table of Contents
