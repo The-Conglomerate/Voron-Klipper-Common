@@ -8,6 +8,9 @@ variable_printer_name: 'Vx.XXXX'            # printer name shown on the display
 variable_display_group: '__voron_display'   # main display group to be shown after a splash screen
 variable_display_icon: 'voron'              # used to show a icon if available on the display
 variable_display_lcd_type: 'none'           # [none|uc1701|sh1106] what type of display do we have
+##### Homing #####
+variable_z_home_current: 0.3                # reduced homing current for z
+variable_home_accel: 1200                   # reduced ACCEL for homing
 gcode:
     # features
     {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
