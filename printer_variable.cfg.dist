@@ -15,9 +15,13 @@ variable_z_home_current: 0.3                # reduced homing current for z
 variable_home_accel: 1200                   # reduced ACCEL for homing
 ##### Parking #####
 variable_park_speed: 18000
+variable_park_z_speed: 900
 variable_z_max_delta: 40
 variable_z_min_delta: 30
 variable_boarder_delta: 20
+
+variable_pause_retract_disance: 1
+variable_retract_speed: 1400
 gcode:
     # command params
     {% set debug = params.DEBUG|default(0)|int %}
@@ -26,14 +30,26 @@ gcode:
     # features
     {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
 
-    {% if ena_debug == "true" or debug == 1 %}
+    {% if ena_debug == "true" %}
         {action_respond_info("==== _PRINTER_VARIABLE ====")}
+        {action_respond_info("= Display Info =")}
         {action_respond_info("printer_name: '%s'" % (printer_name))}
         {action_respond_info("display_bootsplash: '%s'" % (display_bootsplash))}
         {action_respond_info("display_group: '%s'" % (display_group))}
         {action_respond_info("chamber_icon: '%s'" % (chamber_icon))}
         {action_respond_info("display_icon: '%s'" % (display_icon))}
         {action_respond_info("display_lcd_type: '%s'" % (display_lcd_type))}
+        {action_respond_info("= Homing =")}
+        {action_respond_info("variable_z_home_current: '%s'" % (variable_z_home_current))}
+        {action_respond_info("variable_home_accel: '%s'" % (variable_home_accel))}
+        {action_respond_info("= Parking =")}
+        {action_respond_info("variable_park_speed: '%s'" % (variable_park_speed))}
+        {action_respond_info("variable_z_max_delta: '%s'" % (variable_z_max_delta))}
+        {action_respond_info("variable_z_min_delta: '%s'" % (variable_z_min_delta))}
+        {action_respond_info("variable_boarder_delta: '%s'" % (variable_boarder_delta))}
+        {action_respond_info("variable_pause_retract_disance: '%s'" % (variable_pause_retract_disance))}
+        {action_respond_info("variable_retract_speed: '%s'" % (variable_retract_speed))}
+        {action_respond_info("===========================")}
     {% endif %}
 
 [delayed_gcode INIT_PRINTER_VARIABLE]
