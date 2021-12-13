@@ -13,27 +13,36 @@ variable_display_lcd_type: 'none'                   # [none|uc1701|sh1106] set u
 ##### Homing #####
 variable_z_home_current: 0.3                # reduced homing current for z
 variable_home_accel: 1200                   # reduced ACCEL for homing
+##### Parking #####
+variable_park_speed: 18000
+variable_z_max_delta: 40
+variable_z_min_delta: 30
+variable_boarder_delta: 20
 gcode:
-  # features
-  {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
+    # command params
+    {% set debug = params.DEBUG|default(0)|int %}
+    # features
+    {% set ena_debug = printer.save_variables.variables.debug|default("false")|lower %}
+    # features
+    {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
 
-  {% if ena_debug == "true" %}
-    {action_respond_info("==== _PRINTER_VARIABLE ====")}
-    {action_respond_info("printer_name: '%s'" % (printer_name))}
-    {action_respond_info("display_bootsplash: '%s'" % (display_bootsplash))}
-    {action_respond_info("display_group: '%s'" % (display_group))}
-    {action_respond_info("chamber_icon: '%s'" % (chamber_icon))}
-    {action_respond_info("display_icon: '%s'" % (display_icon))}
-    {action_respond_info("display_lcd_type: '%s'" % (display_lcd_type))}
-  {% endif %}
+    {% if ena_debug == "true" or debug == 1 %}
+        {action_respond_info("==== _PRINTER_VARIABLE ====")}
+        {action_respond_info("printer_name: '%s'" % (printer_name))}
+        {action_respond_info("display_bootsplash: '%s'" % (display_bootsplash))}
+        {action_respond_info("display_group: '%s'" % (display_group))}
+        {action_respond_info("chamber_icon: '%s'" % (chamber_icon))}
+        {action_respond_info("display_icon: '%s'" % (display_icon))}
+        {action_respond_info("display_lcd_type: '%s'" % (display_lcd_type))}
+    {% endif %}
 
 [delayed_gcode INIT_PRINTER_VARIABLE]
 initial_duration: 0.3
 gcode:
-  # features
-  {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
+    # features
+    {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
 
-  {% if ena_debug == "true" %}
-    {action_respond_info('==== INIT_PRINTER_VARIABLE ====')}
-  {% endif %}
-  _PRINTER_VARIABLE
+    {% if ena_debug == "true" %}
+        {action_respond_info('==== INIT_PRINTER_VARIABLE ====')}
+    {% endif %}
+    _PRINTER_VARIABLE
