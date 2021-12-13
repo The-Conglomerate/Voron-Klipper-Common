@@ -4,7 +4,7 @@
 [gcode_macro _PRINTER_VARIABLE]
 description: Helper: Contains defined printer specific variables
 ##### Display info #####
-variable_printer_name: 'VX.X XXXX'                   # [none|VX.X XXXX| VT XXXX| VS XXXX| VL XXXX] printer name shown on the display. Replace X with numbers
+variable_printer_name: 'VX.X XXXX'                  # [none|VX.X XXXX| VT XXXX| VS XXXX| VL XXXX] printer name shown on the display. Replace X with numbers
 variable_display_bootsplash: '__voron_bootsplash'   # [none|__voron_bootsplash] which bootsplash to use
 variable_display_group: '__voron_display'           # [none|__voron_display] which display layout to use, none will use default layout
 variable_chamber_icon: 'chamber'                    # [chamber|chamberv0|chambervt|chamberv2] which icon to use for chamber (only shows if you have a chamber thermistor)
