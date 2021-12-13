@@ -64,9 +64,12 @@ is_system_service: False
 
 # Credits
 
+* [VoronDesign](https://github.com/VoronDesign)
+* [alch3my's measure thermal behaviour script](https://github.com/alchemyEngine/measure_thermal_behavior/tree/main=)
 * [alch3my's frame expansion script](https://github.com/Klipper3d/klipper/pull/4157)
 * [eecue's klipper_configs](https://github.com/eecue/klippper-config)
 * [zellneralex's klipper_configs](https://github.com/zellneralex/klipper_config)
 * [FHeilmann's klipper_configs](https://github.com/FHeilmann/klipper_config/)
+* [Ellis's klipper_config](https://github.com/AndrewEllis93/v2.247_backup_klipper_config/)
 * [th33xitus/kiauh klipper github backup](https://github.com/th33xitus/kiauh/wiki/How-to-autocommit-config-changes-to-github%3F)
 * [Ette's enraged rabbit carrot feeder macro's for filament unload](https://github.com/EtteGit/EnragedRabbitProject)
