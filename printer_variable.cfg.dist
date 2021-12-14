@@ -9,19 +9,31 @@ variable_display_bootsplash: '__voron_bootsplash'   # [none|__voron_bootsplash] 
 variable_display_group: '__voron_display'           # [none|__voron_display] which display layout to use, none will use default layout
 variable_chamber_icon: 'chamber'                    # [chamber|chamberv0|chambervt|chamberv2] which icon to use for chamber (only shows if you have a chamber thermistor)
 variable_display_icon: 'voron_heart'                # [none|voron|voron_heart|ercf_carrot] used to show a icon if available on the display
+variable_printing_message: 'Printing'               # Set a suitable message if you want to spice it up
 variable_display_lcd_type: 'none'                   # [none|uc1701|sh1106] set uc1701 for mini12864 display and sh1106 for v0
 ##### Homing #####
-variable_z_home_current: 0.3                # reduced homing current for z
-variable_home_accel: 1200                   # reduced ACCEL for homing
+variable_z_home_current: 0.3                        # reduced homing current for z
+variable_home_accel: 1200                           # reduced ACCEL for homing
 ##### Parking #####
-variable_park_speed: 18000
-variable_park_z_speed: 900
-variable_z_max_delta: 40
-variable_z_min_delta: 30
-variable_boarder_delta: 20
-
-variable_pause_retract_disance: 1
-variable_retract_speed: 1400
+variable_park_speed: 18000                          # Speed for X/Y moves while parking
+variable_park_z_speed: 900                          # Speed for Z moves while parking
+variable_z_max_delta: 0                             # Min distance to keep from max z, in case you mount anything there
+variable_z_min_delta: 30                            # Min distance to keep above bed
+variable_border_delta: 20                           # Min distance to keep from min/max X/Y
+variable_wipe_out: 3                                # Distance to move X/Y after z-hopping off the print, wipe to break string
+##### Heating and cooldown #####
+variable_preheat_min_soak_time: 5                   # Minimum time bed needs to stay hot before printing can start
+##### Extruder #####
+variable_pause_extruder_temp: 150                   # Temperature to lower the hotend to while heatsoaking/paused
+variable_unretract_start: 9                         # Length to unretract on print start in mm
+variable_pause_retract_distance: 3                  # Length to retract when pausing in mm
+variable_end_retract_distance: 10                   # Length to retract on print end in mm
+variable_retract_speed: 15                          # Retraction speed in mm/s (pause)
+variable_end_retract_speed: 5                       # retraction speed in mm/s (end)
+variable_unretract_speed: 5                         # Unretraction speed in mm/s (start/resume)
+##### Filaments #####
+## Temperatures to load/unload different filament types with. ('Filament_type', unload_temperature, load_temperature)
+variable_filament_temperature_array: [('PLA', 195, 205), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 230, 250), ('PC', 260, 280)]
 gcode:
     # command params
     {% set debug = params.DEBUG|default(0)|int %}
