@@ -25,6 +25,8 @@ variable_wipe_out: 3                                # Distance to move X/Y after
 variable_preheat_min_soak_time: 5                   # Minimum time bed needs to stay hot before printing can start
 ##### Extruder #####
 variable_pause_extruder_temp: 150                   # Temperature to lower the hotend to while heatsoaking/paused
+variable_load_distance: 45                          # Distance to load filament fast with LOAD_FILAMENT
+variable_load_extrude: 50                           # Distance to extrude filament slowly to get rid of old color with LOAD_FILAMENT
 variable_unretract_start: 9                         # Length to unretract on print start in mm
 variable_pause_retract_distance: 3                  # Length to retract when pausing in mm
 variable_end_retract_distance: 10                   # Length to retract on print end in mm
@@ -34,6 +36,25 @@ variable_unretract_speed: 5                         # Unretraction speed in mm/s
 ##### Filaments #####
 ## Temperatures to load/unload different filament types with. ('Filament_type', unload_temperature, load_temperature)
 variable_filament_temperature_array: [('PLA', 195, 205), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 230, 250), ('PC', 260, 280)]
+# TODO: CLEANUP CLEANUP CLEANUP CHECK CLEANUP CHECK CHECK CLEANUP
+##### Filament load #####
+variable_load_distance: 45                        				; load distance while loading filament
+variable_load_extrude: 50 	                         			; extrude distance while loading filament
+##### Filament unload #####
+variable_unload_distance: 70	                       			; unload distance while unloading filament
+variable_cooling_tube_length: 15								; Dragon ST: 15, Dragon HF: 10, Mosquito: 20 Dragonfly: ??
+variable_cooling_tube_retraction: 35							; Dragon ST: 35, Dragon HF: 30, Mosquito: 38 Dragonfly: ??
+variable_initial_cooling_speed: 10								; 10 by default
+variable_final_cooling_speed: 50								; 50 by default
+variable_cooling_moves: 5										; 5 by default
+variable_use_skinnydip: 1										; on by default
+variable_skinnydip_distance: 26									; 26 by default
+variable_dip_insertion_speed: 33								; 33 by default
+variable_dip_extraction_speed: 60								; 70 by default. 50 works better on v0.
+variable_cooling_zone_pause: 0  								; 0 by default. in ms. 400 let's it cool longer before entering gears. Needed? maybe not.
+variable_unloading_speed_start: 60								; 199 by default, too high. Lowered to 40 for v0. Unknown on v2, as 199 kinda worked.
+variable_unloading_speed: 20									; 20 by default
+variable_ramming_volume: 15										; 0 by default. is in mm3. Trying 15. No idea if it has any impact.
 gcode:
     # command params
     {% set debug = params.DEBUG|default(0)|int %}
