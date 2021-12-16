@@ -12,10 +12,26 @@ check_klipper()
         echo "Klipper service not found, please install Klipper first"
         exit -1
     fi
-
 }
 
-# Step 2: Create macros and configs directories
+# Step 2: Add moonraker config
+update_moonraker()
+{
+    echo -e "Adding update manager to moonraker.conf"
+
+    update_section=$(grep -c '\[update_manager voron_klipper_common\]' \
+    ${HOME}/klipper_config/moonraker.conf || true)
+    if [ "${update_section}" -eq 0 ]; then
+        echo -e "\n" >> ${HOME}/klipper_config/moonraker.conf
+        while read -r line; do
+            echo -e "${line}" >> ${HOME}/klipper_config/moonraker.conf
+        done < "$PWD/file_templates/moonraker_update.txt"
+        echo -e "\n" >> ${HOME}/klipper_config/moonraker.conf
+    else
+        echo -e "[update_manager voron_klipper_common] already exist in moonraker.conf [SKIPPED]"
+    fi
+}
+# Step 3: Create macros and configs directories
 create_dirs()
 {
     echo "Creating directories in klipper_config..."
@@ -33,7 +49,7 @@ create_dirs()
     fi
 }
 
-# Step 3: link macros and configs
+# Step 4: link macros and configs
 create_links()
 {
     echo "Linking common directories to klipper_config..."
@@ -51,16 +67,16 @@ create_links()
     fi
 }
 
-# Step 4: create printer_variables.cfg
+# Step 5: create printer_variables.cfg
 create_printer_variables_cfg()
 {
     if [ ! -f "${KLIPPER_CONFIG_PATH}/printer_variable.cfg" ]; then
         echo "Creating ${KLIPPER_CONFIG_PATH}/printer_variable.cfg"
-        cp "${SRCDIR}/printer_variable.cfg.dist" "${KLIPPER_CONFIG_PATH}/printer_variable.cfg"
+        cp "${SRCDIR}/file_templates/printer_variable.cfg.dist" "${KLIPPER_CONFIG_PATH}/printer_variable.cfg"
     fi
 }
 
-# Step 5: restarting Klipper
+# Step 6: restarting Klipper
 restart_klipper()
 {
     echo "Restarting Klipper..."
@@ -91,6 +107,7 @@ done
 
 # Run steps
 verify_ready
+update_moonraker
 create_dirs
 create_links
 create_printer_variables_cfg
