@@ -1,0 +1,6 @@
+[update_manager voron_klipper_common]
+type: git_repo
+path: /home/pi/Voron-Klipper-Common
+primary_branch: main
+origin: https://github.com/The-Conglomerate/Voron-Klipper-Common.git
+is_system_service: False
