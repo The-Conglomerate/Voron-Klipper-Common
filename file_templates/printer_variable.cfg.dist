@@ -16,7 +16,7 @@ variable_display_lcd_type: 'none'                   # [none|uc1701|sh1106] set u
 variable_filament_temperature_array: [('NONE', 0, 0), ('PLA', 195, 210), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 280), ('PC', 280, 280)]
 
 ##### Filament load (It's important that these two are tuned to your printer) #####
-variable_load_distance: 45                          # V0: 45 V2|VS|VT|VL: 55 Distance to load filament fast (Subject to change, not precicely measured. Help wanted)
+variable_load_distance: 50                          # V0: 50 V2|VS|VT|VL: 55 Distance to load filament fast (Subject to change, not precicely measured. V0 is correct, clockwork/other setups unknown)
 variable_load_extrude: 60                           # Distance to extrude filament slowly to get rid of old filament/color
 
 # TODO: Figure out a better way to name this, and actually figure out what the cooling tube length/retraction means. Read ERCF manual.
