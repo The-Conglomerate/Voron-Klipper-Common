@@ -12,6 +12,8 @@ variable_display_icon: 'voron_heart'                # [none|voron|voron_heart|er
 variable_printing_message: 'Printing'               # Set a suitable message if you want to spice it up
 variable_display_lcd_type: 'none'                   # [none|uc1701|sh1106] set uc1701 for mini12864 display and sh1106 for v0
 
+##### Neopixel #####
+variable_led_color_array: [('red',1.0,0,0,0),('orange',1.0,0.43,0,0),('green',0,1.0,0,0),('blue',0,0,1.0,0),('white',1.0,1.0,1.0,0),('yellow',1.0,1.0,0,0),('purple',1.0,0,1.0,0),('off',0,0,0,0)]
 ##### Filaments temperatures to load/unload different filament types with. ('Filament_type', unload_temperature, load_temperature) #####
 variable_filament_temperature_array: [('NONE', 0, 0), ('PLA', 195, 210), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 280), ('PC', 280, 280)]
 
