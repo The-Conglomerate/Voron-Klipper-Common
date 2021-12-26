@@ -73,4 +73,4 @@ is_system_service: False
 * [Ellis's klipper_config](https://github.com/AndrewEllis93/v2.247_backup_klipper_config/)
 * [th33xitus/kiauh klipper github backup](https://github.com/th33xitus/kiauh/wiki/How-to-autocommit-config-changes-to-github%3F)
 * [Ette's enraged rabbit carrot feeder macro's for filament unload](https://github.com/EtteGit/EnragedRabbitProject)
-* [Voron-Afterburner Stealth Burner LED macros](https://github.com/VoronDesign/Voron-Afterburner/blob/sb-beta/Klipper_Macros/stealthburner_leds.cfg)
+* [Voron-Stealthburner LED macros](https://github.com/VoronDesign/Voron-Afterburner/blob/sb-beta/Klipper_Macros/stealthburner_leds.cfg)
