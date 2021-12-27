@@ -4,24 +4,146 @@
 [gcode_macro _PRINTER_VARIABLE]
 description: Helper: Contains defined printer specific variables
 ##### Display info #####
-variable_printer_name: 'VX.X XXXX'                  # [none|VX.X XXXX| VT XXXX| VS XXXX| VL XXXX] printer name shown on the display. Replace X with numbers
+variable_chamber_icon: 'chamber'                    # [chamber|chamberv0|chambervt|chamberv2] which icon to use for chamber (only shows if you have a chamber thermistor)
 variable_display_bootsplash: '__voron_bootsplash'   # [none|__voron_bootsplash] which bootsplash to use
 variable_display_group: '__voron_display'           # [none|__voron_display] which display layout to use, none will use default layout
-variable_chamber_icon: 'chamber'                    # [chamber|chamberv0|chambervt|chamberv2] which icon to use for chamber (only shows if you have a chamber thermistor)
 variable_display_icon: 'voron_heart'                # [none|voron|voron_heart|ercf_carrot] used to show a icon if available on the display
 variable_display_lcd_type: 'none'                   # [none|uc1701|sh1106] set uc1701 for mini12864 display and sh1106 for v0
-##### Homing #####
-variable_z_home_current: 0.3                # reduced homing current for z
-variable_home_accel: 1200                   # reduced ACCEL for homing
-##### Parking #####
-variable_park_speed: 18000
-variable_park_z_speed: 900
-variable_z_max_delta: 40
-variable_z_min_delta: 30
-variable_boarder_delta: 20
+variable_printer_name: 'VX.X XXXX'                  # [none|VX.X XXXX| VT XXXX| VS XXXX| VL XXXX] printer name shown on the display. Replace X with numbers
+variable_printing_message: 'Printing'               # Set a suitable message if you want to spice it up
 
-variable_pause_retract_disance: 1
-variable_retract_speed: 1400
+##### Neopixel #####
+variable_neopixel_leds: {
+        'case': { # Case
+            'name': 'case_lights',
+            'index': "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34",
+            'states': {
+                'on':               {'r': 1.0,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+                'printing':         {'r': 1.0,  'g': 1.0,   'b': 1.0,   'w': 0.0},
+                'homing':           {'r': 0.0,  'g': 0.6,   'b': 0.2,   'w': 0.0},
+                'heating':          {'r': 0.3,  'g': 0.18,  'b': 0.0,   'w': 0.0},
+                'calibrate_qgl':    {'r': 0.5,  'g': 0.1,   'b': 0.4,   'w': 0.0},
+                'calibrate_z':      {'r': 0.8,  'g': 0.0,   'b': 0.35,  'w': 0.0},
+                'calibrate_mesh':   {'r': 0.2,  'g': 1.0,   'b': 0.0,   'w': 0.0},
+                'cleaning':         {'r': 0.0,  'g': 0.02,  'b': 0.5,   'w': 0.0},
+                'busy':             {'r': 0.4,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+                'standby':          {'r': 0.01, 'g': 0.01,  'b': 0.01,  'w': 0.1},
+                # 'error':            {'r': 0.01, 'g': 0.01,  'b': 0.01,  'w': 0.1},
+                'off':              {'r': 0.0,  'g': 0.0,   'b': 0.0,   'w': 0.0}
+            }
+        },
+        'display': { # Display (sh1106)
+            'name': 'display_lights',
+            'index': "1,2",
+            'states': {
+                'on':               {'r': 1.0,  'g': 1.0,   'b': 1.0,   'w': 0.0},
+                # 'printing':         {'r': 1.0,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+                # 'homing':           {'r': 0.0,  'g': 0.6,   'b': 0.2,   'w': 0.0},
+                # 'heating':          {'r': 0.3,  'g': 0.18,  'b': 0.0,   'w': 0.0},
+                # 'calibrate_qgl':    {'r': 0.5,  'g': 0.1,   'b': 0.4,   'w': 0.0},
+                # 'calibrate_z':      {'r': 0.8,  'g': 0.0,   'b': 0.35,  'w': 0.0},
+                # 'calibrate_mesh':   {'r': 0.2,  'g': 1.0,   'b': 0.0,   'w': 0.0},
+                # 'cleaning':         {'r': 0.0,  'g': 0.02,  'b': 0.5,   'w': 0.0},
+                # 'busy':             {'r': 0.4,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+                'standby':          {'r': 0.01, 'g': 0.01,  'b': 0.01,  'w': 0.1},
+                # 'error':            {'r': 0.01, 'g': 0.01,  'b': 0.01,  'w': 0.1},
+                'off':              {'r': 0.0,  'g': 0.0,   'b': 0.0,   'w': 0.0}
+            }
+        },
+        'display_knob': { # Display knob (sh1106)
+            'name': 'display_lights',
+            'index': "3",
+            'states': {
+                'on':               {'r': 1.0,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+                # 'printing':         {'r': 1.0,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+                # 'homing':           {'r': 0.0,  'g': 0.6,   'b': 0.2,   'w': 0.0},
+                # 'heating':          {'r': 0.3,  'g': 0.18,  'b': 0.0,   'w': 0.0},
+                # 'calibrate_qgl':    {'r': 0.5,  'g': 0.1,   'b': 0.4,   'w': 0.0},
+                # 'calibrate_z':      {'r': 0.8,  'g': 0.0,   'b': 0.35,  'w': 0.0},
+                # 'calibrate_mesh':   {'r': 0.2,  'g': 1.0,   'b': 0.0,   'w': 0.0},
+                # 'cleaning':         {'r': 0.0,  'g': 0.02,  'b': 0.5,   'w': 0.0},
+                # 'busy':             {'r': 0.4,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+                'standby':          {'r': 0.01, 'g': 0.01,  'b': 0.01,  'w': 0.1},
+                # 'error':            {'r': 0.01, 'g': 0.01,  'b': 0.01,  'w': 0.1},
+                'off':              {'r': 0.0,  'g': 0.0,   'b': 0.0,   'w': 0.0}
+            }
+        }
+        # 'logo': { # StealthBurner logo
+        #     'name': 'sb_lights',
+        #     'index': "3",
+        #     'states': {
+        #         'on':               {'r': 1.0,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+        #         'printing':         {'r': 1.0,  'g': 1.0,   'b': 1.0,   'w': 0.0},
+        #         'homing':           {'r': 0.0,  'g': 0.6,   'b': 0.2,   'w': 0.0},
+        #         'heating':          {'r': 0.3,  'g': 0.18,  'b': 0.0,   'w': 0.0},
+        #         'calibrate_qgl':    {'r': 0.5,  'g': 0.1,   'b': 0.4,   'w': 0.0},
+        #         'calibrate_z':      {'r': 0.8,  'g': 0.0,   'b': 0.35,  'w': 0.0},
+        #         'calibrate_mesh':   {'r': 0.2,  'g': 1.0,   'b': 0.0,   'w': 0.0},
+        #         'cleaning':         {'r': 0.0,  'g': 0.02,  'b': 0.5,   'w': 0.0},
+        #         'busy':             {'r': 0.4,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+        #         'standby':          {'r': 0.01, 'g': 0.01,  'b': 0.01,  'w': 0.1},
+        #         # 'error':            {'r': 0.01, 'g': 0.01,  'b': 0.01,  'w': 0.1},
+        #         'off':              {'r': 0.0,  'g': 0.0,   'b': 0.0,   'w': 0.0}
+        #     }
+        # },
+        # 'nozzle': { # StealthBurner nozzle
+        #     'name': 'sb_lights',
+        #         'index': "3",
+        #         'states': {
+        #             'heating':      {'r': 0.8, 'g': 0.35, 'b': 0.0, 'w':0.0},
+        #             'off':          {'r': 0.0, 'g': 0.0, 'b': 0.0, 'w': 0.0},
+        #             'on':           {'r': 0.8, 'g': 0.8, 'b': 0.8, 'w':1.0},
+        #             'standby':      {'r': 0.6, 'g': 0.0, 'b': 0.0, 'w':0.0},
+        #     }
+        # }
+    }
+variable_neopixel_colors: {
+        'red':                  {'r': 1.0,  'g': 0.0,   'b': 0.0,   'w': 0.0},
+        'orange':               {'r': 1.0,  'g': 0.43,  'b': 0.0,   'w': 0.0},
+        'green':                {'r': 0.0,  'g': 1.0,   'b': 0.0,   'w': 0.0},
+        'blue':                 {'r': 0.0,  'g': 0.0,   'b': 1.0,   'w': 0.0},
+        'white':                {'r': 1.0,  'g': 1.0,   'b': 1.0,   'w': 0.0},
+        'yellow':               {'r': 1.0,  'g': 1.0,   'b': 0.0,   'w': 0.0},
+        'purple':               {'r': 1.0,  'g': 0.0,   'b': 1.0,   'w': 0.0},
+        'off':                  {'r': 0.0,  'g': 0.0,   'b': 0.0,   'w': 0.0}
+    }
+
+##### Filaments temperatures to load/unload different filament types with. ('Filament_type', unload_temperature, load_temperature) #####
+variable_filament_temperature_array: [('NONE', 0, 0), ('PLA', 195, 210), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 280), ('PC', 280, 280)]
+
+##### Filament load (It's important that these two are tuned to your printer) #####
+variable_load_distance: 50                          # Distance to load filament fast: Miniafterburner + Dragonfly: '50' Afterburner + Clockwork + Dragonfly: '70'
+variable_load_extrude: 60                           # Distance to extrude filament slowly to get rid of old filament/color
+
+# TODO: Figure out a better way to name this, and actually figure out what the cooling tube length/retraction means. Read ERCF manual.
+##### Filament unload (S) #####
+variable_cooling_tube_length: 15                    # Dragon ST: 15, Dragon HF: 10, Dragonfly: ??
+variable_cooling_tube_retraction: 35                # Dragon ST: 35, Dragon HF: 30, Dragonfly: ??
+variable_unload_distance: 80                        # Distance to unload until it's free in the extruder. Default is a little high. Tweak to your liking
+
+##### Homing #####
+variable_home_accel: 1200                           # reduced ACCEL for homing
+variable_z_home_current: 0.3                        # reduced homing current for z
+
+##### Parking #####
+variable_border_delta: 10                           # Min distance to keep from min/max X/Y
+variable_park_speed: 18000                          # Speed for X/Y moves while parking
+variable_park_z_speed: 900                          # Speed for Z moves while parking
+variable_wipe_out: 3                                # Distance to move X/Y after z-hopping off the print, wipe to break string
+variable_z_max_delta: 0                             # Min distance to keep from max z, in case you mount anything there
+variable_z_min_delta: 30                            # Min distance to keep above bed
+
+##### Heating and cooldown #####
+variable_preheat_min_soak_time: 5                   # Minimum time bed needs to stay hot before printing can start
+
+##### Extruder #####
+variable_end_retract_distance: 10                   # Length to retract on print end in mm
+variable_end_retract_speed: 5                       # retraction speed in mm/s (end)
+variable_pause_extruder_temp: 150                   # Temperature to lower the hotend to while heatsoaking/paused
+variable_pause_retract_distance: 3                  # Length to retract when pausing in mm
+variable_retract_speed: 15                          # Retraction speed in mm/s (pause)
+variable_unretract_speed: 5                         # Unretraction speed in mm/s (start/resume)
+variable_unretract_start: 9                         # Length to unretract on print start in mm
 gcode:
     # command params
     {% set debug = params.DEBUG|default(0)|int %}
@@ -33,22 +155,25 @@ gcode:
     {% if ena_debug == "true" %}
         {action_respond_info("==== _PRINTER_VARIABLE ====")}
         {action_respond_info("= Display Info =")}
-        {action_respond_info("printer_name: '%s'" % (printer_name))}
+        {action_respond_info("chamber_icon: '%s'" % (chamber_icon))}
         {action_respond_info("display_bootsplash: '%s'" % (display_bootsplash))}
         {action_respond_info("display_group: '%s'" % (display_group))}
-        {action_respond_info("chamber_icon: '%s'" % (chamber_icon))}
         {action_respond_info("display_icon: '%s'" % (display_icon))}
         {action_respond_info("display_lcd_type: '%s'" % (display_lcd_type))}
+        {action_respond_info("printer_name: '%s'" % (printer_name))}
+        {action_respond_info("= Neopixel =")}
+        {action_respond_info("neopixel_colors: '%s'" % (neopixel_colors))}
+        {action_respond_info("neopixel_leds: '%s'" % (neopixel_leds))}
         {action_respond_info("= Homing =")}
-        {action_respond_info("variable_z_home_current: '%s'" % (variable_z_home_current))}
         {action_respond_info("variable_home_accel: '%s'" % (variable_home_accel))}
+        {action_respond_info("variable_z_home_current: '%s'" % (variable_z_home_current))}
         {action_respond_info("= Parking =")}
-        {action_respond_info("variable_park_speed: '%s'" % (variable_park_speed))}
-        {action_respond_info("variable_z_max_delta: '%s'" % (variable_z_max_delta))}
-        {action_respond_info("variable_z_min_delta: '%s'" % (variable_z_min_delta))}
         {action_respond_info("variable_boarder_delta: '%s'" % (variable_boarder_delta))}
+        {action_respond_info("variable_park_speed: '%s'" % (variable_park_speed))}
         {action_respond_info("variable_pause_retract_disance: '%s'" % (variable_pause_retract_disance))}
         {action_respond_info("variable_retract_speed: '%s'" % (variable_retract_speed))}
+        {action_respond_info("variable_z_max_delta: '%s'" % (variable_z_max_delta))}
+        {action_respond_info("variable_z_min_delta: '%s'" % (variable_z_min_delta))}
         {action_respond_info("===========================")}
     {% endif %}
 
@@ -61,4 +186,6 @@ gcode:
     {% if ena_debug == "true" %}
         {action_respond_info('==== INIT_PRINTER_VARIABLE ====')}
     {% endif %}
+
     _PRINTER_VARIABLE
+    _SET_LED_STATE_BY_NAME STATE="standby"
