@@ -158,19 +158,11 @@ gcode:
     # command params
     {% set debug = params.DEBUG|default(0)|int %}
     # features
-    {% set ena_debug = printer.save_variables.variables.debug|default("false")|lower %}
-    # features
     {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
 
     {% if ena_debug == "true" %}
         {action_respond_info("==== _PRINTER_VARIABLE ====")}
-        {action_respond_info("= Display Info =")}
-        {action_respond_info("display.bootsplash: '%s'" % (bootsplash))}
-        {action_respond_info("display.chamber_icon: '%s'" % (display.chamber_icon))}
-        {action_respond_info("display.group: '%s'" % (display.group))}
-        {action_respond_info("display.icon: '%s'" % (display.icon))}
-        {action_respond_info("display.name: '%s'" % (display.name))}
-        {action_respond_info("display.printing_message: '%s'" % (display.printing_message))}
+        {action_respond_info("display: '%s'" % (display))}
 
         {action_respond_info("= Neopixel =")}
         {action_respond_info("neopixel_colors: '%s'" % (neopixel_colors))}
@@ -181,12 +173,7 @@ gcode:
         {action_respond_info("variable_z_home_current: '%s'" % (variable_z_home_current))}
 
         {action_respond_info("= Parking =")}
-        {action_respond_info("variable_boarder_delta: '%s'" % (variable_boarder_delta))}
-        {action_respond_info("variable_park_speed: '%s'" % (variable_park_speed))}
-        {action_respond_info("variable_pause_retract_disance: '%s'" % (variable_pause_retract_disance))}
-        {action_respond_info("variable_retract_speed: '%s'" % (variable_retract_speed))}
-        {action_respond_info("variable_z_max_delta: '%s'" % (variable_z_max_delta))}
-        {action_respond_info("variable_z_min_delta: '%s'" % (variable_z_min_delta))}
+        {action_respond_info("parking: '%s'" % (parking))}
         {action_respond_info("===========================")}
     {% endif %}
 
