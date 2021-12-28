@@ -176,6 +176,7 @@ gcode:
         {action_respond_info("extruder: '%s'" % (extruder))}
         {action_respond_info("filament: '%s'" % (filament))}
         {action_respond_info("filament_temperature_array: '%s'" % (filament_temperature_array))}
+        {action_respond_info("homing: '%s'" % (homing))}
         {action_respond_info("neopixel_colors: '%s'" % (neopixel_colors))}
         {action_respond_info("neopixel_leds: '%s'" % (neopixel_leds))}
         {action_respond_info("parking: '%s'" % (parking))}
