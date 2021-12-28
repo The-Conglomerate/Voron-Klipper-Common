@@ -4,13 +4,14 @@
 [gcode_macro _PRINTER_VARIABLE]
 description: Helper: Contains defined printer specific variables
 ##### Display info #####
-variable_chamber_icon: 'chamber'                    # [chamber|chamberv0|chambervt|chamberv2] which icon to use for chamber (only shows if you have a chamber thermistor)
-variable_display_bootsplash: '__voron_bootsplash'   # [none|__voron_bootsplash] which bootsplash to use
-variable_display_group: '__voron_display'           # [none|__voron_display] which display layout to use, none will use default layout
-variable_display_icon: 'voron_heart'                # [none|voron|voron_heart|ercf_carrot] used to show a icon if available on the display
-variable_display_lcd_type: 'none'                   # [none|uc1701|sh1106] set uc1701 for mini12864 display and sh1106 for v0
-variable_printer_name: 'VX.X XXXX'                  # [none|VX.X XXXX| VT XXXX| VS XXXX| VL XXXX] printer name shown on the display. Replace X with numbers
-variable_printing_message: 'Printing'               # Set a suitable message if you want to spice it up
+variable_display: {
+    "bootsplash": "__voron_bootsplash",      # [none|__voron_bootsplash] which bootsplash to use
+    "chamber_icon": "chamber",               # [chamber|chamberv0|chambervt|chamberv2] which icon to use for chamber (only shows if you have a chamber thermistor)
+    "group": "__voron_display",              # [none|__voron_display] which display layout to use, none will be default layout
+    "icon": "voron_heart",                   # [voron|voron_heart|ercf_carrot] used to show a icon if available on the display
+    "name": "VX.X XXXX",                     # printer name shown on the display
+    "printing_message": "Printing",          # Set a suitable message if you want to spice it up
+    }
 
 ##### Neopixel #####
 variable_neopixel_leds: {
@@ -155,18 +156,21 @@ gcode:
     {% if ena_debug == "true" %}
         {action_respond_info("==== _PRINTER_VARIABLE ====")}
         {action_respond_info("= Display Info =")}
-        {action_respond_info("chamber_icon: '%s'" % (chamber_icon))}
-        {action_respond_info("display_bootsplash: '%s'" % (display_bootsplash))}
-        {action_respond_info("display_group: '%s'" % (display_group))}
-        {action_respond_info("display_icon: '%s'" % (display_icon))}
-        {action_respond_info("display_lcd_type: '%s'" % (display_lcd_type))}
-        {action_respond_info("printer_name: '%s'" % (printer_name))}
+        {action_respond_info("display.bootsplash: '%s'" % (bootsplash))}
+        {action_respond_info("display.chamber_icon: '%s'" % (display.chamber_icon))}
+        {action_respond_info("display.group: '%s'" % (display.group))}
+        {action_respond_info("display.icon: '%s'" % (display.icon))}
+        {action_respond_info("display.name: '%s'" % (display.name))}
+        {action_respond_info("display.printing_message: '%s'" % (display.printing_message))}
+
         {action_respond_info("= Neopixel =")}
         {action_respond_info("neopixel_colors: '%s'" % (neopixel_colors))}
         {action_respond_info("neopixel_leds: '%s'" % (neopixel_leds))}
+
         {action_respond_info("= Homing =")}
         {action_respond_info("variable_home_accel: '%s'" % (variable_home_accel))}
         {action_respond_info("variable_z_home_current: '%s'" % (variable_z_home_current))}
+
         {action_respond_info("= Parking =")}
         {action_respond_info("variable_boarder_delta: '%s'" % (variable_boarder_delta))}
         {action_respond_info("variable_park_speed: '%s'" % (variable_park_speed))}
