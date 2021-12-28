@@ -10,7 +10,7 @@ variable_display: {
     "group": "__voron_display",              # [none|__voron_display] which display layout to use, none will be default layout
     "icon": "voron_heart",                   # [voron|voron_heart|ercf_carrot] used to show a icon if available on the display
     "name": "VX.X XXXX",                     # printer name shown on the display
-    "printing_message": "Printing",          # Set a suitable message if you want to spice it up
+    "printing_message": "Printing"           # Set a suitable message if you want to spice it up
     }
 
 ##### Neopixel #####
@@ -192,4 +192,4 @@ gcode:
     {% endif %}
 
     _PRINTER_VARIABLE
-    _SET_LED_STATE_BY_NAME STATE="standby"
+    _SET_LED_STATE_BY_NAME STATE="on"
