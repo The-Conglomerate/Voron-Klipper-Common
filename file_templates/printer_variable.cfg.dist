@@ -147,13 +147,18 @@ variable_parking: {
 variable_preheat_min_soak_time: 5                   # Minimum time bed needs to stay hot before printing can start
 
 ##### Extruder #####
-variable_end_retract_distance: 10                   # Length to retract on print end in mm
-variable_end_retract_speed: 5                       # retraction speed in mm/s (end)
-variable_pause_extruder_temp: 150                   # Temperature to lower the hotend to while heatsoaking/paused
-variable_pause_retract_distance: 3                  # Length to retract when pausing in mm
-variable_retract_speed: 15                          # Retraction speed in mm/s (pause)
-variable_unretract_speed: 5                         # Unretraction speed in mm/s (start/resume)
-variable_unretract_start: 9                         # Length to unretract on print start in mm
+variable_extruder: {
+    "end_retract_distance": 10,                   # Length to retract on print end in mm (Default: 10)
+    "end_retract_speed": 5,                       # retraction speed in mm/s (end) (Default: 5)
+    "load_distance": 45,                          # Distance to load filament fast with LOAD_FILAMENT (Default: 45)
+    "load_extrude": 50,                           # Distance to extrude filament slowly to get rid of old color with LOAD_FILAMENT (Default: 50)
+    "pause_temp": 150,                            # Temperature to lower the hotend to while heatsoaking/paused (Default: 150)
+    "pause_retract_distance": 3,                  # Length to retract when pausing in mm (Default: 3)
+    "retract_speed": 15,                          # Retraction speed in mm/s (pause) (Default: 15)
+    "unretract_speed": 5,                         # Unretraction speed in mm/s (start/resume) (Default: 5)
+    "unretract_start": 9                          # Length to unretract on print start in mm (Default: 9)
+    }
+
 gcode:
     # command params
     {% set debug = params.DEBUG|default(0)|int %}
@@ -163,17 +168,12 @@ gcode:
     {% if ena_debug == "true" %}
         {action_respond_info("==== _PRINTER_VARIABLE ====")}
         {action_respond_info("display: '%s'" % (display))}
-
-        {action_respond_info("= Neopixel =")}
+        {action_respond_info("extruder: '%s'" % (extruder))}
         {action_respond_info("neopixel_colors: '%s'" % (neopixel_colors))}
         {action_respond_info("neopixel_leds: '%s'" % (neopixel_leds))}
-
-        {action_respond_info("= Homing =")}
+        {action_respond_info("parking: '%s'" % (parking))}
         {action_respond_info("variable_home_accel: '%s'" % (variable_home_accel))}
         {action_respond_info("variable_z_home_current: '%s'" % (variable_z_home_current))}
-
-        {action_respond_info("= Parking =")}
-        {action_respond_info("parking: '%s'" % (parking))}
         {action_respond_info("===========================")}
     {% endif %}
 
