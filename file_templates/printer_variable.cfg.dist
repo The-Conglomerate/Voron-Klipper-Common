@@ -137,10 +137,10 @@ variable_z_min_delta: 30                            # Min distance to keep above
 variable_parking: {
     "border_delta": 20,                             # Min distance to keep from min/max X/Y (Default: 20)
     "speed": 18000,                                 # Speed for X/Y moves while parking (Default: 18000)
-    "wipe_out": 3                                   # Distance to move X/Y after z-hopping off the print, wipe to break string (Default: 3)
+    "wipe_out": 3,                                  # Distance to move X/Y after z-hopping off the print, wipe to break string (Default: 3)
     "z_max_delta": 40,                              # Min distance to keep from max z, in case you mount anything there (Default: 40)
     "z_min_delta": 30,                              # Min distance to keep above bed (Default: 30)
-    "z_speed": 900,                                 # Speed for Z moves while parking (Default: 900) @DEV: This is not used currently
+    "z_speed": 900                                  # Speed for Z moves while parking (Default: 900) @DEV: This is not used currently
     }
 
 ##### Heating and cooldown #####
