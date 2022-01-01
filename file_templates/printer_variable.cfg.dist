@@ -66,7 +66,7 @@ variable_filament: {
     }
 
 ## Temperatures to load/unload different filament types with. ('Filament_type', unload_temperature, load_temperature)
-variable_filament_temperature_array: [('NONE', 0, 0), ('PLA', 195, 215), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 300), ('PC', 285, 280)]
+variable_filament_temperature_array: [('NONE', 0, 0), ('PLA', 195, 210), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 280), ('PC', 280, 280)]
 
 ##### Neopixel #####
 variable_neopixel_leds: {
