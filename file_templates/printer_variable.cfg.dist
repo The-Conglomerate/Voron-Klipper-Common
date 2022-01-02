@@ -27,9 +27,6 @@ variable_parking: {
     "z_min_delta": 30                               # Min distance to keep above bed (Default: 30)
     }
 
-##### Heating and cooldown #####
-variable_preheat_min_soak_time: 5                   # Minimum time bed needs to stay hot before printing can start
-
 ##### Extruder #####
 variable_extruder: {
     "end_retract_distance": 10,                   # Length to retract on print end in mm (Default: 10)
@@ -41,6 +38,14 @@ variable_extruder: {
     "retract_speed": 15,                          # Retraction speed in mm/s (pause) (Default: 15)
     "unretract_speed": 5,                         # Unretraction speed in mm/s (start/resume) (Default: 5)
     "unretract_start": 9                          # Length to unretract on print start in mm (Default: 9)
+    }
+
+##### Heating, filtration and cooldown #####
+variable_preheat_filtration_cooldown: {
+    "preheat_min_soak_time": 5,                   # Minimum time for the bed to stay hot before printing can start in minutes (Default: 5)
+    "nevermore_speed": 0.4,                       # Fanspeed of the nevermore during heatsoak/printing (Default: 0.4)
+    "exhaust_speed": 0.1,                         # Fanspeed of the exhaust during heatsoak/printing (Default: 0.1)
+    "cooldown_bed_temperature": 80                # What temperature to run the nevermore/exhaust until (Default: 80)
     }
 
 ##### Filaments #####
