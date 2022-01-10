@@ -4,13 +4,76 @@
 [gcode_macro _PRINTER_VARIABLE]
 description: Helper: Contains defined printer specific variables
 ##### Display info #####
-variable_chamber_icon: 'chamber'                    # [chamber|chamberv0|chambervt|chamberv2] which icon to use for chamber (only shows if you have a chamber thermistor)
-variable_display_bootsplash: '__voron_bootsplash'   # [none|__voron_bootsplash] which bootsplash to use
-variable_display_group: '__voron_display'           # [none|__voron_display] which display layout to use, none will use default layout
-variable_display_icon: 'voron_heart'                # [none|voron|voron_heart|ercf_carrot] used to show a icon if available on the display
-variable_display_lcd_type: 'none'                   # [none|uc1701|sh1106] set uc1701 for mini12864 display and sh1106 for v0
-variable_printer_name: 'VX.X XXXX'                  # [none|VX.X XXXX| VT XXXX| VS XXXX| VL XXXX] printer name shown on the display. Replace X with numbers
-variable_printing_message: 'Printing'               # Set a suitable message if you want to spice it up
+variable_display: {
+    "bootsplash": "__voron_bootsplash",      # [none|__voron_bootsplash] which bootsplash to use
+    "chamber_icon": "chamber",               # [chamber|chamberv0|chambervt|chamberv2] which icon to use for chamber (only shows if you have a chamber thermistor)
+    "group": "__voron_display",              # [none|__voron_display] which display layout to use, none will be default layout
+    "icon": "voron_heart",                   # [voron|voron_heart|ercf_carrot] used to show a icon if available on the display
+    "name": "VX.X XXXX",                     # printer name shown on the display
+    "printing_message": "Printing"           # Set a suitable message if you want to spice it up
+    }
+
+##### Homing #####
+variable_z_home_current: 0.3                        # reduced homing current for z (Default: 0.3)
+variable_home_accel: 1200                           # reduced ACCEL for homing (Default: 1200)
+
+##### Parking #####
+variable_parking: {
+    "border_delta": 20,                             # Min distance to keep from min/max X/Y (Default: 20)
+    "speed": 300,                                   # Speed for X/Y moves while parking (Default: 300mm/s)
+    "z_speed": 15,                                  # Speed for Z moves while parking (Default: 15mm/s)
+    "wipe_out": 3,                                  # Distance to move X/Y after z-hopping off the print, wipe to break string (Default: 3)
+    "z_max_delta": 0,                               # Min distance to keep from max z, in case you mount anything there (Default: 40)
+    "z_min_delta": 30                               # Min distance to keep above bed (Default: 30)
+    }
+
+##### Extruder #####
+variable_extruder: {
+    "end_retract_distance": 10,                   # Length to retract on print end in mm (Default: 10)
+    "end_retract_speed": 5,                       # retraction speed in mm/s (end) (Default: 5)
+    "load_distance": 45,                          # Distance to load filament fast with LOAD_FILAMENT (Default: 45)
+    "load_extrude": 50,                           # Distance to extrude filament slowly to get rid of old color with LOAD_FILAMENT (Default: 50)
+    "pause_temp": 150,                            # Temperature to lower the hotend to while heatsoaking/paused (Default: 150)
+    "pause_retract_distance": 3,                  # Length to retract when pausing in mm (Default: 3)
+    "retract_speed": 15,                          # Retraction speed in mm/s (pause) (Default: 15)
+    "unretract_speed": 5,                         # Unretraction speed in mm/s (start/resume) (Default: 5)
+    "unretract_start": 9                          # Length to unretract on print start in mm (Default: 9)
+    }
+
+##### Heating, filtration and cooldown #####
+variable_preheat_filtration_cooldown: {
+    "preheat_min_soak_time": 5,                   # Minimum time for the bed to stay hot before printing can start in minutes (Default: 5)
+    "nevermore_speed": 0.4,                       # Fanspeed of the nevermore during heatsoak/printing (Default: 0.4)
+    "exhaust_speed": 0.1,                         # Fanspeed of the exhaust during heatsoak/printing (Default: 0.1)
+    "cooldown_bed_temperature": 80,               # What temperature to run the nevermore/exhaust until (Default: 80)
+    "nevermore_cooldown_speed": 0.65,             # Fanspeed of the nevermore during cooldown (Default: 0.65)
+    "exhaust_cooldown_speed": 0.2                 # Fanspeed of the exhaust during cooldown (Default: 0.2)
+    }
+
+##### Filaments #####
+variable_filament: {
+    "cooling_moves": 5,                           # TODO: Description (Default: 5)
+    "cooling_tube_length": 15,                    # TODO: Description Dragon ST: 15, Dragon HF: 10, Mosquito: 20 Dragonfly: ?? (Default: 15)
+    "cooling_tube_retraction": 35,                # TODO: Description Dragon ST: 35, Dragon HF: 30, Mosquito: 38 Dragonfly: ?? (Default: 35)
+    "cooling_zone_pause": 0,                      # TODO: Description 0 by default. in ms. 400 let's it cool longer before entering gears. Needed? maybe not. (Default: 0)
+    "dip_extraction_speed": 60,                   # TODO: Description 70 by default. 50 works better on v0. (Default: 60)
+    "dip_insertion_speed": 33,                    # TODO: Description (Default: 33)
+    "final_cooling_speed": 50,                    # TODO: Description (Default: 50)
+    "initial_cooling_speed": 10,                  # TODO: Description (Default: 15)
+    "load_distance": 45,                          # load distance while loading filament (Default: 45) @DEV: This is not used currently
+    "load_extrude": 50,                           # extrude distance while loading filament (Default: 50) @DEV: This is not used currently
+    "ramming_volume": 15,                         # TODO: Description 0 by default. is in mm3. Trying 15. No idea if it has any impact. (Default: 15)
+    "skinnydip_distance": 26,                     # TODO: Description (Default: 26)
+    "unload_distance": 70,                        # unload distance while unloading filament (Default: 70)
+    "unloading_speed_extrude_flex_nylon": 0.83,   # TODO: Description (Default: 0.83)
+    "unloading_speed_extrude": 4.16,              # TODO: Description (Default: 4.16)
+    "unloading_speed_start": 60,                  # TODO: Description 199 by default, too high. Lowered to 40 for v0. Unknown on v2, as 199 kinda worked. (Default: 60)
+    "unloading_speed": 20,                        # TODO: Description 20 by default (Default: 20)
+    "use_skinnydip": 1                            # TODO: Description (Default: 1)
+    }
+
+## Temperatures to load/unload different filament types with. ('Filament_type', unload_temperature, load_temperature)
+variable_filament_temperature_array: [('NONE', 0, 0), ('PLA', 195, 210), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 280), ('PC', 280, 280)]
 
 ##### Neopixel #####
 variable_neopixel_leds: {
@@ -107,73 +170,24 @@ variable_neopixel_colors: {
         'purple':               {'r': 1.0,  'g': 0.0,   'b': 1.0,   'w': 0.0},
         'off':                  {'r': 0.0,  'g': 0.0,   'b': 0.0,   'w': 0.0}
     }
-
-##### Filaments temperatures to load/unload different filament types with. ('Filament_type', unload_temperature, load_temperature) #####
-variable_filament_temperature_array: [('NONE', 0, 0), ('PLA', 195, 210), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 280), ('PC', 280, 280)]
-
-##### Filament load (It's important that these two are tuned to your printer) #####
-variable_load_distance: 50                          # Distance to load filament fast: Miniafterburner + Dragonfly: '50' Afterburner + Clockwork + Dragonfly: '70'
-variable_load_extrude: 60                           # Distance to extrude filament slowly to get rid of old filament/color
-
-# TODO: Figure out a better way to name this, and actually figure out what the cooling tube length/retraction means. Read ERCF manual.
-##### Filament unload (S) #####
-variable_cooling_tube_length: 15                    # Dragon ST: 15, Dragon HF: 10, Dragonfly: ??
-variable_cooling_tube_retraction: 35                # Dragon ST: 35, Dragon HF: 30, Dragonfly: ??
-variable_unload_distance: 80                        # Distance to unload until it's free in the extruder. Default is a little high. Tweak to your liking
-
-##### Homing #####
-variable_home_accel: 1200                           # reduced ACCEL for homing
-variable_z_home_current: 0.3                        # reduced homing current for z
-
-##### Parking #####
-variable_border_delta: 10                           # Min distance to keep from min/max X/Y
-variable_park_speed: 18000                          # Speed for X/Y moves while parking
-variable_park_z_speed: 900                          # Speed for Z moves while parking
-variable_wipe_out: 3                                # Distance to move X/Y after z-hopping off the print, wipe to break string
-variable_z_max_delta: 0                             # Min distance to keep from max z, in case you mount anything there
-variable_z_min_delta: 30                            # Min distance to keep above bed
-
-##### Heating and cooldown #####
-variable_preheat_min_soak_time: 5                   # Minimum time bed needs to stay hot before printing can start
-
-##### Extruder #####
-variable_end_retract_distance: 10                   # Length to retract on print end in mm
-variable_end_retract_speed: 5                       # retraction speed in mm/s (end)
-variable_pause_extruder_temp: 150                   # Temperature to lower the hotend to while heatsoaking/paused
-variable_pause_retract_distance: 3                  # Length to retract when pausing in mm
-variable_retract_speed: 15                          # Retraction speed in mm/s (pause)
-variable_unretract_speed: 5                         # Unretraction speed in mm/s (start/resume)
-variable_unretract_start: 9                         # Length to unretract on print start in mm
 gcode:
     # command params
     {% set debug = params.DEBUG|default(0)|int %}
-    # features
-    {% set ena_debug = printer.save_variables.variables.debug|default("false")|lower %}
     # features
     {% set ena_debug = printer.save_variables.variables.debug|default('false')|lower %}
 
     {% if ena_debug == "true" %}
         {action_respond_info("==== _PRINTER_VARIABLE ====")}
-        {action_respond_info("= Display Info =")}
-        {action_respond_info("chamber_icon: '%s'" % (chamber_icon))}
-        {action_respond_info("display_bootsplash: '%s'" % (display_bootsplash))}
-        {action_respond_info("display_group: '%s'" % (display_group))}
-        {action_respond_info("display_icon: '%s'" % (display_icon))}
-        {action_respond_info("display_lcd_type: '%s'" % (display_lcd_type))}
-        {action_respond_info("printer_name: '%s'" % (printer_name))}
-        {action_respond_info("= Neopixel =")}
+        {action_respond_info("display: '%s'" % (display))}
+        {action_respond_info("extruder: '%s'" % (extruder))}
+        {action_respond_info("filament: '%s'" % (filament))}
+        {action_respond_info("filament_temperature_array: '%s'" % (filament_temperature_array))}
+        {action_respond_info("homing: '%s'" % (homing))}
         {action_respond_info("neopixel_colors: '%s'" % (neopixel_colors))}
         {action_respond_info("neopixel_leds: '%s'" % (neopixel_leds))}
-        {action_respond_info("= Homing =")}
+        {action_respond_info("parking: '%s'" % (parking))}
         {action_respond_info("variable_home_accel: '%s'" % (variable_home_accel))}
         {action_respond_info("variable_z_home_current: '%s'" % (variable_z_home_current))}
-        {action_respond_info("= Parking =")}
-        {action_respond_info("variable_boarder_delta: '%s'" % (variable_boarder_delta))}
-        {action_respond_info("variable_park_speed: '%s'" % (variable_park_speed))}
-        {action_respond_info("variable_pause_retract_disance: '%s'" % (variable_pause_retract_disance))}
-        {action_respond_info("variable_retract_speed: '%s'" % (variable_retract_speed))}
-        {action_respond_info("variable_z_max_delta: '%s'" % (variable_z_max_delta))}
-        {action_respond_info("variable_z_min_delta: '%s'" % (variable_z_min_delta))}
         {action_respond_info("===========================")}
     {% endif %}
 
@@ -188,4 +202,4 @@ gcode:
     {% endif %}
 
     _PRINTER_VARIABLE
-    _SET_LED_STATE_BY_NAME STATE="standby"
+    _SET_LED_STATE_BY_NAME STATE="on"
