@@ -47,6 +47,7 @@ variable_preheat_filtration_cooldown: {
     "preheat_min_soak_time": 5,                   # Minimum time for the bed to stay hot before printing can start in minutes (Default: 5)
     "part_fan_speed": 1.0,                        # Fanspeed of the part cooling fan during heatsoak/printing (Default: 1.0)
     "nevermore_speed": 0.4,                       # Fanspeed of the nevermore during heatsoak/printing (Default: 0.4)
+    "bed_fans_speed": 0.8,                        # Fanspeed of the bed fans during heatsoak/printing. (Default: 0.8)
     "exhaust_speed": 0.1,                         # Fanspeed of the exhaust during heatsoak/printing (Default: 0.1)
     "cooldown_bed_temperature": 80,               # What temperature to run the nevermore/exhaust until (Default: 80)
     "nevermore_cooldown_speed": 0.65,             # Fanspeed of the nevermore during cooldown (Default: 0.65)
