@@ -51,6 +51,7 @@ variable_preheat_filtration_cooldown: {
     "exhaust_speed": 0.1,                         # Fanspeed of the exhaust during heatsoak/printing (Default: 0.1)
     "cooldown_bed_temperature": 80,               # What temperature to run the nevermore/exhaust until (Default: 80)
     "nevermore_cooldown_speed": 0.65,             # Fanspeed of the nevermore during cooldown (Default: 0.65)
+    "bed_fans_cooldown_speed": 0.5,               # Fanspeed of the bed fans during cooldown (Default: 0.5)
     "exhaust_cooldown_speed": 0.2                 # Fanspeed of the exhaust during cooldown (Default: 0.2)
     }
 
