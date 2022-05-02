@@ -17,7 +17,7 @@ variable_display: {
 variable_homing: {
     "home_accel": 1200,                           # reduced ACCEL for homing (Default: 1200)
     "z_home_current": 0.3,                        # reduced homing current for z (Default: 0.3)
-    "home_print_end": "X"                           # What axis to home on print_end. (Default: X)
+    "home_print_end": "X"                         # What axis to home on print_end. Can be X, XY or Y. (Default: X)
     }
 
 ##### Parking #####
