@@ -139,7 +139,7 @@ variable_neopixel_leds: {
         }
         # "logo": { # StealthBurner logo
         #     "name": "sb_lights",
-        #     "index": "3",
+        #     "index": "1",
         #     "states": {
         #         "on":               {"r": 1.0,  "g": 0.0,   "b": 0.0,   "w": 0.0},
         #         "printing":         {"r": 1.0,  "g": 1.0,   "b": 1.0,   "w": 0.0},
@@ -157,7 +157,7 @@ variable_neopixel_leds: {
         # },
         # "nozzle": { # StealthBurner nozzle
         #     "name": "sb_lights",
-        #         "index": "3",
+        #         "index": "2,3",
         #         "states": {
         #             "heating":      {"r": 0.8, "g": 0.35, "b": 0.0, "w":0.0},
         #             "off":          {"r": 0.0, "g": 0.0, "b": 0.0, "w": 0.0},
