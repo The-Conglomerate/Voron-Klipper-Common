@@ -78,8 +78,8 @@ variable_filament: {
     "use_skinnydip": 1                            # TODO: Description (Default: 1)
     }
 
-## Temperatures to load/unload different filament types with. ('Filament_type', unload_temperature, load_temperature)
-variable_filament_temperature_array: [('NONE', 0, 0), ('PLA', 195, 210), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 280), ('PC', 280, 280)]
+## Temperatures to load/unload different filament types with along with pressure advance. ('Filament_type', unload_temperature, load_temperature, pressure_advance)
+variable_filament_array: [('NONE', 0, 0), ('PLA', 195, 210), ('ABS', 220, 240), ('PET', 215, 250), ('FLEX', 215, 230), ('ASA', 220, 250), ('NYLON', 260, 280), ('PC', 280, 280)]
 
 ##### Neopixel #####
 variable_neopixel_leds: {
